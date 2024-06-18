@@ -1,0 +1,193 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "My Library Management Systems",
+        "verson": "1.0.0",
+        "title": "Library Management Systems",
+        "license": {
+            "name": "MIT",
+            "url": "http://opensource.org/licenses/MIT"
+        }
+    },
+     "tags": [
+        {
+            "name": "Products API",
+            "description": "Test API"
+        }
+     ],
+      "servers": [
+        {
+            "url": "/"
+        }
+      ],
+       "components": {
+        "schemas": {
+            "BookList": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                     "description": {
+                        "type": "string"
+                     }
+                }
+            },
+             "Id": {
+                "type": "integer",
+                "properties": {
+                    "Id": {
+                        "type": "integer"
+                    }
+                }
+             },
+              "update": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                     "description": {
+                        "type": "string"
+                     },
+                      "completed": {
+                        "type": "boolean"
+                      }
+                }
+              }
+        }
+       },
+        "//path": {
+            "/libs": {
+                "post": {
+                    "tags": [
+                        "Add libs to API"
+                    ],
+                     "summary": "Add libs",
+                     "requestBody": {
+                        "description": "post New libs to Database",
+                        "required": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/libs"
+                                }
+                            }
+                        }
+                     },
+                      "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                "$ref": "#/components/schemas/libs"
+                            }
+                        },
+                         "404": {
+                            "description": "NOT FOUND",
+                            "schema": {
+                                "$ref": "#/components/schemas/libs"
+                            }
+                         }
+                      }
+                }
+            },
+             "/libs/{id": {
+                 "get": {
+                    "tags": [
+                        "Get libs from API"
+                    ],
+                     "summary": "Get libs",
+                     "parameters": [{
+                        "name": "id",
+                        "in": "path",
+                        "description": "todo id to update",
+                        "required": "true",
+                        "type": "integer",
+                        "schema": {
+                            "$ref": "#/components/schemas/Id"
+                        }
+                     }],
+                      "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                "$ref": "#/components/schemas/Libs"
+                            }
+                        },
+                         "404": {
+                            "description": "NOT FOUND",
+                            "schema": {
+                                "$ref": "#/components/schemas/Libs"
+                            }
+                         }
+                      }
+                 },
+                  "put": {
+                    "tags": [
+                        "updatw libs on API"
+                    ],
+                     "parameters": [{
+                        "name": "id",
+                        "in": "path",
+                        "description": "libs to update",
+                        "required": true,
+                        "type": "integer",
+                        "schema": {
+                            "$ref": "#/components/schemas/Id"
+                        }
+                     }],
+                     "summary": "update libs",
+                     "requestBody": {
+                        "description": "Update Existing libs on Database",
+                        "required": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/update"
+                                }
+                            }
+                        }
+                     },
+                      "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                "$ref": "#/components/schemas/Libs"
+                            }
+                       }
+                      }
+                  },
+                   "delete": {
+                    "tags": [
+                        "Delete libs to API"
+                    ],
+                     "parameters": [{
+                        "name": "id",
+                        "in": "path",
+                        "description": "data to delete",
+                        "required": true,
+                        "type": "integer",
+                        "schema": {
+                            "$ref": "#/components/schemas/libs"
+                        }
+                     }],
+                      "summary": "Delete libs",
+                      "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                "$ref": "#/components/schemas/Libs"
+                            }
+                        },
+                         "404": {
+                            "description": "NOT FOUND",
+                            "schema": {
+                                "$ref": "#/components/schemas/Libs"
+                            }
+                         }
+                      }
+                   }
+             }
+        }
+     
+}
